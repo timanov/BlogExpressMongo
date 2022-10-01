@@ -6,7 +6,11 @@ app.get('/', (req, res) => {
     res.send('1  Hello World');
 });
 
-
+app.post('/auth/login', (req, res) => {
+    res.json({
+        success: true,
+    });
+});
 
 app.listen(4444, (err) => {
     if (err) {
