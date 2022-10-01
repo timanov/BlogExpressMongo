@@ -2,8 +2,7 @@ import exress from 'express';
 
 const app = exress();
 
-app.
-get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
