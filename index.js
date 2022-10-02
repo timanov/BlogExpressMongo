@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
 mongoose.connect(
-    'mongodb+srv://admin:wwwwww@cluster0.g5009yb.mongodb.net/?retryWrites=true&w=majority'
-);
+    'mongodb+srv://admin:wwwwww@cluster0.g5009yb.mongodb.net/?retryWrites=true&w=majority')
+    .then(() => console.log('DB ok'))
+    .catch((err) => console.log('DB error', err));
 
 const app = exress();
 
