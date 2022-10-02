@@ -1,5 +1,10 @@
 import exress from 'express';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+
+mongoose.connect(
+    'mongodb+srv://admin:wwwwww@cluster0.g5009yb.mongodb.net/?retryWrites=true&w=majority'
+);
 
 const app = exress();
 
@@ -11,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.post('/auth/login', (req, res) => {
     console.log(req.body);
-
+    
     const token = jwt.sign({
         email: req.body.email,
         fullName: 'Вася Пупкин',
