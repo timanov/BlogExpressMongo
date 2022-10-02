@@ -2,6 +2,8 @@ import exress from 'express';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
+import { registerValidation } from './validations/auth.js'
+
 mongoose.connect(
     'mongodb+srv://admin:wwwwww@cluster0.zabcece.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('DB ok'))
@@ -11,24 +13,19 @@ const app = exress();
 
 app.use(exress.json());
 
-app.get('/', (req, res) => {
-    res.send('1  Hello World');
+app.post('/', (req, res) => {
+    console.log('hello world')
 });
 
-app.post('/auth/login', (req, res) => {
-    console.log(req.body);
-    
-    const token = jwt.sign({
-        email: req.body.email,
-        fullName: 'Вася Пупкин',
-    },
-    'secret123'
-    );
+app.post('/auth/register', registerValidation, (req, res) => {
+   const errors = validationResult(req);
+   if (!errors.isEmpty()) {
+    return res.status(400).json(errors.arraya());
+   }
 
-    res.json({
-        success: true,
-        token,
-    });
+   res.json({
+    success: true,
+   });
 });
 
 app.listen(4444, (err) => {
